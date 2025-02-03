@@ -1,0 +1,55 @@
+<div class="cliente-edit-container">
+    <h2>Editar Cliente</h2>
+    
+    <!-- Mostrar spinner de carga mientras se obtienen los datos -->
+    <div *ngIf="loading" class="loading">
+      <p>Cargando datos...</p>
+    </div>
+  
+    <!-- Mostrar el formulario una vez cargados los datos -->
+    <form *ngIf="!loading" (ngSubmit)="updateCliente()">
+      <div class="form-group">
+        <label for="nombres">Nombres</label>
+        <input type="text" id="nombres" [(ngModel)]="cliente.nombres" name="nombres" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" [(ngModel)]="cliente.apellidos" name="apellidos" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="genero">Género</label>
+        <select id="genero" [(ngModel)]="cliente.genero" name="genero" required>
+          <option value="" disabled>Selecciona un género</option>
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="fecha_Nac">Fecha de Nacimiento</label>
+        <input type="date" id="fecha_Nac" [(ngModel)]="cliente.fecha_Nac" name="fecha_Nac" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="numero_Doc">Número de Documento</label>
+        <input type="text" id="numero_Doc" [(ngModel)]="cliente.numero_Doc" name="numero_Doc" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="numero_Cel">Número de Celular</label>
+        <input type="text" id="numero_Cel" [(ngModel)]="cliente.numero_Cel" name="numero_Cel" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="cliente.email" name="email" required />
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </div>
+    </form>
+  </div>
+  

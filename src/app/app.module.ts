@@ -12,6 +12,7 @@ import { ClienteDetailComponent } from './cliente-detail/cliente-detail.componen
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ClienteEditComponent } from './cliente-edit/cliente-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     ClienteDetailComponent,
     HomeComponent,
     LoginComponent,
-    ClienteFormComponent
+    ClienteFormComponent,
+    ClienteEditComponent
   ],
   imports: [
     BrowserModule,

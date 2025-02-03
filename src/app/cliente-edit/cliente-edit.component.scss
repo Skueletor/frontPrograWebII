@@ -1,29 +1,32 @@
 // Variables base (ajusta según tus necesidades)
 $primary-color: #007bff;
 $border-color: #ddd;
-$input-bg: #fff;
 $input-border: #ccc;
-$label-color: #555;
-$btn-bg: $primary-color;
-$btn-color: #fff;
-$btn-hover-bg: darken($primary-color, 10%);
 $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-// Contenedor principal del formulario
-.cliente-form-container {
+// Contenedor principal del componente
+.cliente-edit-container {
   max-width: 600px;
   margin: 30px auto;
   padding: 30px;
   background-color: #f8f9fa;
   border: 1px solid $border-color;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-family: $font-family;
 
   h2 {
     text-align: center;
     margin-bottom: 20px;
     color: $primary-color;
+  }
+
+  .loading {
+    text-align: center;
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
   }
 
   form {
@@ -38,7 +41,7 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       label {
         margin-bottom: 5px;
         font-weight: 600;
-        color: $label-color;
+        color: #555;
       }
 
       input,
@@ -46,9 +49,7 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         padding: 10px;
         border: 1px solid $input-border;
         border-radius: 4px;
-        background-color: $input-bg;
         font-size: 1rem;
-        color: $label-color;
         transition: border-color 0.3s ease;
 
         &:focus {
@@ -60,7 +61,7 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       // Estilo para el select para que se vea similar al input
       select {
         appearance: none;
-        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='5'%3E%3Cpath%20fill='%23666'%20d='M2%200L0%202h4z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5'%3E%3Cpath fill='%23666' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 8px 10px;
@@ -73,8 +74,8 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin-top: 20px;
 
       .btn {
-        background-color: $btn-bg;
-        color: $btn-color;
+        background-color: $primary-color;
+        color: #fff;
         border: none;
         padding: 12px 20px;
         border-radius: 4px;
@@ -83,7 +84,7 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         transition: background-color 0.3s ease;
 
         &:hover {
-          background-color: $btn-hover-bg;
+          background-color: darken($primary-color, 10%);
         }
       }
     }
