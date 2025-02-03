@@ -1,0 +1,25 @@
+<div class="cliente-form-container">
+    <h2>{{ isEdit ? 'Editar Cliente' : 'Añadir Cliente' }}</h2>
+  
+    <form (ngSubmit)="saveCliente()">
+      <div class="form-group">
+        <label for="nombres">Nombre</label>
+        <input type="text" id="nombres" [(ngModel)]="cliente.nombres" name="nombres" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" [(ngModel)]="cliente.apellidos" name="apellidos" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="cliente.email" name="email" required />
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+      </div>
+    </form>
+  </div>
+  
