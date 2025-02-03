@@ -20,7 +20,11 @@ export class ClientesComponent implements OnInit {
   loading: boolean = true;
   userName: string | null = '';
 
-  constructor(private clienteService: ClienteService, public router: Router, private authService: AuthService) { }
+  constructor(
+    private clienteService: ClienteService,
+    public router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.userName = this.authService.getUserName();
@@ -31,7 +35,7 @@ export class ClientesComponent implements OnInit {
     this.clienteService.getClientes().subscribe(
       (response) => {
         console.log('Response:', response);
-        // Ajusta según la estructura de la respuesta
+        // Ajusta según la estructura de la respuesta de la API
         this.clientes = Array.isArray(response) ? response : response.result || [];
         this.loading = false;
       },
@@ -51,6 +55,12 @@ export class ClientesComponent implements OnInit {
   }
 
   editCliente(id: number): void {
-    this.router.navigate(['/cliente', id]);
+    const cliente = this.clientes.find(c => c.id === id);
+    if (cliente) {
+      this.router.navigate(['/cliente/editar', id], { state: { data: cliente } });
+    } else {
+      this.router.navigate(['/cliente/editar', id]);
+    }
   }
+  
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Navigation } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
 
 @Component({
@@ -18,16 +18,12 @@ export class ClienteEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Intenta obtener el objeto cliente desde el estado de navegación
-    const nav: Navigation | null = this.router.getCurrentNavigation();
-    if (nav && nav.extras && nav.extras.state && nav.extras.state['data']) {
-      this.cliente = nav.extras.state['data'];
+    if (history.state && history.state.data) {
+      this.cliente = history.state.data;
       this.loading = false;
     } else {
-      // Si no se pasa la data, se puede intentar obtenerla vía API (si estuviera implementado) o redirigir
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
-        // Opcional: Realizar GET por id, en caso de que la API soporte la operación
         this.clienteService.getCliente(+id).subscribe(
           data => {
             this.cliente = data;
@@ -36,10 +32,11 @@ export class ClienteEditComponent implements OnInit {
           error => {
             console.error('Error al obtener el cliente:', error);
             this.loading = false;
+            this.router.navigate(['/clientes']);
           }
         );
       } else {
-        console.error('No se proporcionó data de cliente y no hay id en la URL');
+        console.error('No se proporcionó data de cliente ni id en la URL');
         this.router.navigate(['/clientes']);
       }
     }
