@@ -1,46 +1,91 @@
+// Variables base (puedes ajustar según tus necesidades)
+$primary-color: #007bff;
+$border-color: #ddd;
+$input-bg: #fff;
+$input-border: #ccc;
+$label-color: #555;
+$btn-bg: $primary-color;
+$btn-color: #fff;
+$btn-hover-bg: darken($primary-color, 10%);
+$font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// Contenedor principal del formulario
 .cliente-form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-  
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: $font-family;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: $primary-color;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
     .form-group {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 15px;
-  
+
       label {
-        font-weight: bold;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: $label-color;
       }
-  
-      input {
-        width: 100%;
+
+      input,
+      select {
         padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
+        border: 1px solid $input-border;
         border-radius: 4px;
+        background-color: $input-bg;
+        font-size: 1rem;
+        color: $label-color;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+
+      // Para que el select muestre un estilo similar a los inputs
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='5'%3E%3Cpath%20fill='%23666'%20d='M2%200L0%202h4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 8px 10px;
       }
     }
-  
+
     .form-actions {
-      text-align: center;
-    }
-  
-    .btn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #45a049;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      .btn {
+        background-color: $btn-bg;
+        color: $btn-color;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $btn-hover-bg;
+        }
       }
     }
   }
-  
+}

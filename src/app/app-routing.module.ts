@@ -7,7 +7,7 @@ import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { ClienteDetailComponent } from './cliente-detail/cliente-detail.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent }, // Ruta para login 
+  { path: '', component: LoginComponent }, // Ruta para login modificar
   { path: 'login', component: LoginComponent }, // Ruta de login
   { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard] },
   { path: 'cliente/nuevo', component: ClienteFormComponent, canActivate: [AuthGuard] },

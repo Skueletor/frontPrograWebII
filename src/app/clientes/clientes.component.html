@@ -1,36 +1,55 @@
 <div class="dashboard-container">
-  <h2>Bienvenido, {{ userName }}</h2>
-  <h2>Clientes</h2>
-  
-  <div class="actions">
-    <button (click)="router.navigate(['/cliente/nuevo'])" class="btn btn-primary">Añadir Cliente</button>
-  </div>
-  
-  <div *ngIf="loading" class="loading">
-    <p>Cargando...</p>
-  </div>
+  <!-- Header del dashboard -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="header-right">
+      <span class="user-greeting">Bienvenido, {{ userName }}</span>
+    </div>
+  </header>
 
-  <table *ngIf="!loading && clientes.length > 0" class="clientes-table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{ cliente.nombres }} {{ cliente.apellidos }}</td>
-        <td>{{ cliente.email }}</td>
-        <td>
-          <button (click)="editCliente(cliente.id)" class="btn btn-edit">Editar</button>
-          <button (click)="deleteCliente(cliente.id)" class="btn btn-delete">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Contenido principal -->
+  <section class="dashboard-content">
+    <div class="dashboard-actions">
+      <h2>Clientes</h2>
+      <button (click)="router.navigate(['/cliente/nuevo'])" class="btn btn-primary">
+        Añadir Cliente
+      </button>
+    </div>
 
-  <div *ngIf="!loading && clientes.length === 0">
-    <p>No se encontraron clientes.</p>
-  </div>
+    <!-- Indicador de carga -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando...</p>
+    </div>
+
+    <!-- Tabla de clientes -->
+    <div *ngIf="!loading && clientes.length > 0" class="table-responsive">
+      <table class="table clientes-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.nombres }} {{ cliente.apellidos }}</td>
+            <td>{{ cliente.email }}</td>
+            <td class="text-center">
+              <button (click)="editCliente(cliente.id)" class="btn btn-edit">Editar</button>
+              <button (click)="deleteCliente(cliente.id)" class="btn btn-delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mensaje en caso de no haber clientes -->
+    <div *ngIf="!loading && clientes.length === 0" class="no-data">
+      <p>No se encontraron clientes.</p>
+    </div>
+  </section>
 </div>

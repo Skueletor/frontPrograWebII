@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +8,30 @@ import { AuthService } from './auth.service';
 export class ClienteService {
   private apiUrl = 'https://localhost:7263/api/Clientes';
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   // Obtener todos los clientes
   getClientes(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
 
-  // Obtener un cliente por ID
+  // Obtener un cliente específico por ID
   getCliente(id: number): Observable<any> {
-    const headers = this.authService.getAuthHeaders();
-    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  // Crear un nuevo cliente
+  // Agregar un nuevo cliente (POST)
   addCliente(cliente: any): Observable<any> {
-    const headers = this.authService.getAuthHeaders();
-    return this.http.post(this.apiUrl, cliente, { headers });
+    return this.http.post<any>(this.apiUrl, cliente);
   }
 
-  // Actualizar un cliente existente
+  // Actualizar un cliente existente (PUT)
   updateCliente(id: number, cliente: any): Observable<any> {
-    const headers = this.authService.getAuthHeaders();
-    return this.http.put(`${this.apiUrl}/${id}`, cliente, { headers });
+    return this.http.put<any>(`${this.apiUrl}/${id}`, cliente);
   }
 
   // Eliminar un cliente
   deleteCliente(id: number): Observable<any> {
-    const headers = this.authService.getAuthHeaders();
-    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }
