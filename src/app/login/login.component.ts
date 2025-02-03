@@ -1,3 +1,4 @@
+// login.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -18,10 +19,13 @@ export class LoginComponent {
     this.authService.login({ userName: this.userName, password: this.password }).subscribe(
       response => {
         console.log('Respuesta de login:', response);
-        this.authService.saveToken(response.token); // Guarda el token si el login es exitoso
-        
-        // this.router.navigate(['/clientes']); // Redirige a la página de clientes
-        this.loginError = false; // Reinicia el error si el login es exitoso
+        if (response && response.result && response.result.token) {
+          this.router.navigate(['/clientes']);
+          this.loginError = false;
+        } else {
+          console.error('La respuesta no contiene token');
+          this.loginError = true;
+        }
       },
       error => {
         console.error('Error de autenticación', error);
